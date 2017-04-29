@@ -66,6 +66,16 @@ def train(self):
 
     if ckpt: _save_ckpt(self, *args)
 
+def inter_grad(self, im, inter, loss):
+    assert isinstance(im, np.ndarray), \
+				'Image is not a np.ndarray'
+    h, w, _ = im.shape
+    im = self.framework.resize_input(im)
+    this_inp = np.expand_dims(im, 0)
+    feed_dict = {self.inp : this_inp}
+    out = self.sess.run(grad_out, feed_dict)
+    return out
+
 def return_predict(self, im):
     assert isinstance(im, np.ndarray), \
 				'Image is not a np.ndarray'
@@ -73,7 +83,6 @@ def return_predict(self, im):
     im = self.framework.resize_input(im)
     this_inp = np.expand_dims(im, 0)
     feed_dict = {self.inp : this_inp}
-
     out = self.sess.run(self.out, feed_dict)[0]
     boxes = self.framework.findboxes(out)
     threshold = self.FLAGS.threshold
@@ -93,6 +102,7 @@ def return_predict(self, im):
                 "y": tmpBox[3]}
         })
     return boxesInfo
+
 
 import math
 
