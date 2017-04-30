@@ -73,6 +73,7 @@ def inter_grad(self, im, inter, loss):
     im = self.framework.resize_input(im)
     this_inp = np.expand_dims(im, 0)
     feed_dict = {self.inp : this_inp}
+    grad_out = tf.gradients(loss, inter)
     out = self.sess.run(grad_out, feed_dict)
     return out
 
