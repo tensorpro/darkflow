@@ -1,1 +1,1 @@
-include cfg/*
+recursive-include darkflow/cfg *
