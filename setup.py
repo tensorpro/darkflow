@@ -67,7 +67,13 @@ setup(
 	name='darkflow',
     description='Darkflow',
     license='GPLv3',
-    url='https://github.com/thtrieu/darkflow',
+    url='https://github.com/tensorpro/darkflow',
+    install_requires=[
+        'Cython',
+        'opencv-python',
+        'numpy',
+        'tensorflow'
+    ],
     packages = find_packages(),
 	scripts = ['flow'],
     ext_modules = cythonize(ext_modules)
