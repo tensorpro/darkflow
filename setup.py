@@ -1,9 +1,22 @@
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
-from Cython.Build import cythonize
-import numpy
+from distutils.core import setup
 import os
 import imp
+
+try:
+    from Cython.Build import cythonize
+except ImportError:
+    from pip import pip
+    pip.main(['install', 'Cython'])
+    from Cython.Build import cythonize
+try:
+    import numpy
+except ImportError:
+    from pip import pip
+    pip.main(['install', 'numpy'])
+    import numpy
+
 
 VERSION = imp.load_source('version', os.path.join('.', 'darkflow', 'version.py'))
 VERSION = VERSION.__version__
@@ -68,8 +81,9 @@ setup(
     description='Darkflow',
     license='GPLv3',
     url='https://github.com/tensorpro/darkflow',
+    setup_requires=["Cython >= 0.20"],
+    include_package_data=True,
     install_requires=[
-        'Cython',
         'opencv-python',
         'numpy',
         'tensorflow'
