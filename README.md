@@ -2,7 +2,7 @@
 This for makes darkflow installable with
 
 ```
-pip install git+https://github.com/tensorpro
+pip install git+https://github.com/tensorpro/darkflow
 ```
 
 and provides easy access to intermediate layer outputs.
