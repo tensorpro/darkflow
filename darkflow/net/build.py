@@ -93,7 +93,6 @@ class TFNet(object):
 
         self.top = state
         self.out = tf.identity(state.out, name='output')
-        self.grad_out = tf.gradients(loss, inter)
 
     def setup_meta_ops(self):
         cfg = dict({
