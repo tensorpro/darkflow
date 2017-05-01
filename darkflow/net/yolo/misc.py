@@ -2,6 +2,9 @@ import pickle
 import numpy as np
 import cv2
 import os
+from ... import __file__ as root
+
+rootdir = os.path.dirname(root)
 
 labels20 = ["aeroplane", "bicycle", "bird", "boat", "bottle",
     "bus", "car", "cat", "chair", "cow", "diningtable", "dog",
@@ -29,7 +32,9 @@ def labels(meta, FLAGS):
         file = 'labels.txt'
         if model in coco_models:
             print("Model has a coco model name, loading coco labels.")
-            file = os.path.join(FLAGS.config, coco_names)
+            print("FILE:",__file__)
+            print("name", __name__)
+            file = os.path.join(rootdir, 'cfg', coco_names)
         elif model == 'yolo9000':
             print("Model has name yolo9000, loading yolo9000 labels.")
             file = os.path.join(FLAGS.config, nine_names)
