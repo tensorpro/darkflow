@@ -1,3 +1,12 @@
+## Fork details
+This for makes darkflow installable with
+
+```
+pip install git+https://github.com/tensorpro/darkflow
+```
+
+and provides easy access to intermediate layer outputs.
+
 ## Intro
 
 Real-time object detection and classification. Paper: [version 1](https://arxiv.org/pdf/1506.02640.pdf), [version 2](https://arxiv.org/pdf/1612.08242.pdf).
